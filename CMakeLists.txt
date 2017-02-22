@@ -17,6 +17,9 @@ include( detectCacheSize )
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_C_FLAGS_NOPANTS "${CMAKE_C_FLAGS_NOPANTS} -O3 -DNDEBUG -DPARCLibrary_DISABLE_VALIDATION")
 
+include_directories(/usr/lib/jvm/java-8-openjdk-amd64/include)
+include_directories(/usr/lib/jvm/java-8-openjdk-amd64/include/linux)
+
 include_directories($ENV{CCNX_DEPENDENCIES}/include)
 set(OPENSSL_ROOT_DIR $ENV{CCNX_DEPENDENCIES})
 
@@ -43,6 +46,7 @@ set(PARC_BIN_LIBRARIES
   )
 
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+link_directories($ENV{CCNX_HOME}/lib)
 
 add_custom_target(${PROJECT_NAME}_cleanup_profiling_data
         "find" "." "-name" "*.gcda" "-delete"

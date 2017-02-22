@@ -149,6 +149,8 @@ set(LIBPARC_ALGOL_SOURCE_FILES
 	algol/parc_URISegment.c
 	algol/parc_Varint.c
 	algol/parc_Vector.c
+	algol/parc_Buffer_wrap.c
+	algol/parc_Memory_wrap.c
 	)
 
 set(LIBPARC_TESTING_HEADER_FILES
@@ -222,6 +224,10 @@ set(LIBPARC_SECURITY_SOURCE_FILES
     security/parc_CertificateFactory.c
     security/parc_CertificateType.c
     security/parc_X509Certificate.c
+    security/parc_IdentityFile_wrap.c
+    security/parc_Identity_wrap.c
+    security/parc_Pkcs12KeyStore_wrap.c
+    security/parc_Security_wrap.c
 	)
 
 
@@ -360,6 +366,8 @@ add_library(parc         STATIC ${LIBPARC_SOURCE_FILES})
 add_library(parc.shared  SHARED ${LIBPARC_SOURCE_FILES})
 target_link_libraries(parc.shared ${LIBEVENT_LIBRARIES})
 target_link_libraries(parc.shared ${OPENSSL_LIBRARIES})
+target_link_libraries(parc.shared ${LONGBOW_LIBRARIES})
+
 set_target_properties(parc.shared PROPERTIES
   C_STANDARD 99
   SOVERSION 1
